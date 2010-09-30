@@ -20,6 +20,34 @@ describe Profile do
     
   end
   
+  describe "gravatar" do
+    before(:each) do
+      @profile = Profile.new
+      @user = @profile.build_user(:email => "me@example.com")
+    end
+    
+    it "should have a correct gravatar hash" do
+      @profile.gravatar_hash.should == "2e0d5407ce8609047b8255c50405d7b1"
+    end
+    
+    it "should not be tricked by capslock" do
+      @profile.user.email = "ME@EXAmpLE.com"
+      @profile.gravatar_hash.should == "2e0d5407ce8609047b8255c50405d7b1"
+    end
+    
+    it "should not be tricked by spaces on the start or end" do
+      @profile.user.email = " me@example.com "
+    end
+    
+    it "should have a correct default url" do
+      (@profile.avatar_url =~ /http:\/\/www\.gravatar\.com\/avatar\/2e0d5407ce8609047b8255c50405d7b1\.jpg\?/).should_not be_false
+    end
+    
+    it "should change the URL to reflect the size" do
+      @profile.avatar_url(:small).should == "http://www.gravatar.com/avatar/2e0d5407ce8609047b8255c50405d7b1.jpg?s=48"
+    end
+  end
+  
   # describe "handles referrals properly" do
   # 
   #   it "returns the referral properly" do

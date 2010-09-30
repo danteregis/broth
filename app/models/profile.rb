@@ -13,11 +13,11 @@ class Profile < ActiveRecord::Base
   end
   
   def gravatar_hash
-    Digest::MD5.hexdigest(self.email.strip.downcase)
+    Digest::MD5.hexdigest(self.user.email.strip.downcase)
   end
   
   def avatar_url(size = :small)
-    "http://www.gravatar.com/avatar/#{gravatar_hash}.jpg?s=#{self.class.avatar_sizes(size)}"
+    "http://www.gravatar.com/avatar/#{gravatar_hash}.jpg?s=#{self.class.avatar_sizes[size]}"
   end
   
   # def add_referrals(friends_list, email_text)
