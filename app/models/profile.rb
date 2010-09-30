@@ -2,12 +2,22 @@ class Profile < ActiveRecord::Base
   liquid_methods :email
   
   belongs_to :user
-  
-  has_attached_file :avatar, :styles => {:thumb => "16x16>", :small => "48x48>", :large => "100x100>", :xlarge => "150x150>"}, :default_url => "/images/foundation/default_:style_avatar.png"
+    
+  def self.avatar_sizes
+    { :thumb => "16", :small => "48", :large => "100", :xlarge => "150" }
+  end
   
   def fullname
     return nil unless first_name && last_name
     "#{first_name} #{last_name}"
+  end
+  
+  def gravatar_hash
+    Digest::MD5.hexdigest(self.email.strip.downcase)
+  end
+  
+  def avatar_url(size = :small)
+    "http://www.gravatar.com/avatar/#{gravatar_hash}.jpg?s=#{self.class.avatar_sizes(size)}"
   end
   
   # def add_referrals(friends_list, email_text)

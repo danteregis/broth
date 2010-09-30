@@ -2,7 +2,7 @@
   %h2{:style => "position: relative;"}
     = @user.email
     - if @site.user_avatars?
-      = image_tag(@user.profile.avatar.url(:thumb), :style => "position: absolute; top: 0; right: 0;")
+      = image_tag(@user.profile.avatar_url(:thumb), :style => "position: absolute; top: 0; right: 0;")
 
 #page_body
   %p
