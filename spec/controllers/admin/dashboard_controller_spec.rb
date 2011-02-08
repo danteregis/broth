@@ -33,7 +33,7 @@ describe Admin::DashboardController do
     
     it "should not load the dashboard" do
       get :show
-      response.should redirect_to(new_user_session_url)
+      response.should redirect_to(new_user_session_url(:unauthenticated => true))
     end
     
   end

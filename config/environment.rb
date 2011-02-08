@@ -22,7 +22,7 @@ Rails::Initializer.run do |config|
   config.gem 'warden',                    :version => '>= 0.9.4'
   config.gem 'devise',                    :version => '>= 1.0.3'
   config.gem 'chronic',                   :version => '>= 0.2.3'
-  config.gem 'delayed_job',               :version => '>= 2.0.2'
+  config.gem 'delayed_job',               :version => '2.0.2'
   config.gem 'will_paginate',             :version => '>= 2.3.11',  :lib => 'will_paginate'
   config.gem 'paperclip',                 :version => '>= 2.2.9',   :lib => 'paperclip'
   config.gem 'whenever',                  :version => '>= 0.3.7',   :lib => false
@@ -34,7 +34,7 @@ Rails::Initializer.run do |config|
   config.gem 'compass',                   :version => '>= 0.8.5'
   config.gem 'grid-coordinates',          :version => '>= 1.0.3',   :lib => 'compass'
   config.gem 'formtastic'
-  config.gem 'validation_reflection'
+  config.gem 'validation_reflection', 	  :version => '0.3.8'
 
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
