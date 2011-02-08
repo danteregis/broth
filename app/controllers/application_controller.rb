@@ -25,7 +25,9 @@ class ApplicationController < ActionController::Base
     
     def require_admin
       unless current_user && current_user.admin?
-        authenticate_user!
+        flash[:notice] = "You must be an Admin to access this page"
+        current_user ? redirect_to(account_url) : authenticate_user!
+        return false
       end
     end
     
